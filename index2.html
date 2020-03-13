@@ -79,7 +79,7 @@
                 p.id = marker.id;
                 p.className = 'estilo';
                 p.innerHTML = marker.components.info.attrValue;
-                if (marker.firstElementChild.getAttribute('visible')==true) {
+                if (marker.firstElementChild.getAttribute('visible') == true) {
                     document.getElementById('hud').appendChild(p)
                 }
             });
@@ -97,7 +97,7 @@
             let c = marker.children;
 
             marker.addEventListener('markerFound', function() {
-                    
+
                 for (let i = 0; i < c.length; i++) {
                     marker.children[i].setAttribute('animation__rotation', {
                         property: 'rotation',
@@ -173,8 +173,8 @@
             document.querySelector('a-entity[camera]').object3D.getWorldDirection(camPos);
 
             for (let i = 0; i < c.length; i++) {
-                    marker.children[i].object3D.lookAt(camPos);
-                }
+                marker.children[i].object3D.lookAt(camPos);
+            }
             // marker.object3D.lookAt(camPos);
         }
 
@@ -230,7 +230,7 @@
 <body style='margin : 0px; overflow: hidden;'>
     <!-- hasta el momento se agregan P a el hud -->
     <!-- ahora hay que cargar imagenes en png en espacios predefinidos por id. parametro pasado por tag html<<<<<<<<<<<<-->
-    
+
     <div id="hud" style='position: absolute; top: 10px; left: 5px; text-align: center; z-index: 1;'>
 
     </div>
@@ -254,36 +254,36 @@
             <img id="mujeres-ninos-selknam" src="img/mujeres-ninos-selknam.png">
 
 
-            <a-mixin id="logicas" popup lookat fade-in lejos-off ></a-mixin>
-            <a-mixin id="fotos"  scale="2 2 2" rotation="-90 0 0" material="alphaTest: 0.5; opacity: 0; transparent: true;"></a-mixin>
+            <a-mixin id="logicas" popup lookat fade-in lejos-off></a-mixin>
+            <a-mixin id="fotos" scale="2 2 2" rotation="-90 0 0" material="alphaTest: 0.5; opacity: 0; transparent: true;"></a-mixin>
             <a-mixin id="dorama" position="0 0 0"></a-mixin>
-            <a-mixin id="fondo"  position="0 -1 0"></a-mixin>
+            <a-mixin id="fondo" position="0 -1 0"></a-mixin>
 
         </a-assets>
 
         <!-- trabajando en este marker. -->
-        <a-marker type="pattern" url='patt/selk-white.patt' id='marker-white' mixin="logicas" olas info="Barco">
-            
+        <a-marker type="pattern" url='marker/patt/aonikenk-1.patt' id='marker-white' mixin="logicas" olas info="Barco">
+
             <a-plane material="src: img/barco-agua.png;" mixin="fotos dorama"></a-plane>
             <a-plane material="src: img/barco.png;" mixin="fotos fondo"></a-plane>
-            
+
 
         </a-marker>
         <!-- marker de prueba doble foto 1 -->
-        <a-marker type="pattern" url='patt/selk-black.patt' id='marker-black' mixin="logicas" info="caza guanaco">
+        <a-marker type="pattern" url='marker/patt/aonikenk-2.patt' id='marker-black' mixin="logicas" info="caza guanaco">
             <a-plane material="src: img/caza_del_guanaco_PAISAJE.png;" mixin="fotos fondo"></a-plane>
             <a-plane material="src: img/caza_del_guanaco_PERSONAJES.png;" mixin="fotos dorama"></a-plane>
             <!-- <a-plane material="src: img/caza_del_guanaco_PERSONAJES.png;" mixin="fotos dorama"></a-plane> -->
-            
+
 
         </a-marker>
         <!-- marker de prueba doble foto 2 -->
-        <a-marker type="pattern" url='patt/cara-selk.patt' id='marker-cara' mixin="logicas" olas info="caza del lobo">
+        <a-marker type="pattern" url='marker/patt/yagan-2.patt' id='marker-cara' mixin="logicas" olas info="caza del lobo">
             <a-plane material="src: img/caza_del_lobo_con_ampon_grande_yagan_PAISAJE.png;" mixin="fotos fondo"></a-plane>
             <a-plane material="src: img/caza_del_lobo_con_ampon_grande_yagan_PERSONAJES.png;" mixin="fotos dorama"></a-plane>
 
-            
-            
+
+
 
         </a-marker>
 
