@@ -256,8 +256,9 @@
 
             <a-mixin id="logicas" popup lookat fade-in lejos-off></a-mixin>
             <a-mixin id="fotos" scale="2 2 2" rotation="-90 0 0" material="alphaTest: 0.5; opacity: 0; transparent: true;"></a-mixin>
-            <a-mixin id="dorama" position="0 0 0"></a-mixin>
-            <a-mixin id="fondo" position="0 -1 0"></a-mixin>
+            <a-mixin id="dorama" position="0 1 0"></a-mixin>
+            <a-mixin id="dorama-oculto" position="0 -1 0"></a-mixin>
+            <a-mixin id="fondo" position="0 0 0"></a-mixin>
 
         </a-assets>
 
@@ -267,10 +268,12 @@
             <a-plane material="src: img/barco-agua.png;" mixin="fotos dorama"></a-plane>
             <a-plane material="src: img/barco.png;" mixin="fotos fondo"></a-plane>
 
+
         </a-marker>
         <!-- marker de prueba doble foto 1 -->
         <a-marker type="pattern" url='marker/patt/aonikenk-2.patt' id='marker-black' mixin="logicas" info="caza guanaco">
             <a-plane material="src: img/caza-de-nandu_paisaje.png;" mixin="fotos fondo"></a-plane>
+            <a-plane material="src: img/caza-de-nandu_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
             <a-plane material="src: img/caza-de-nandu_personaje.png;" mixin="fotos dorama"></a-plane>
             <!-- <a-plane material="src: img/caza_del_guanaco_PERSONAJES.png;" mixin="fotos dorama"></a-plane> -->
         </a-marker>
@@ -278,6 +281,7 @@
         <a-marker type="pattern" url='marker/patt/yagan-2.patt' id='marker-cara' mixin="logicas" olas info="caza del lobo">
             <a-plane material="src: img/caza-del-guanaco_paisaje.png;" mixin="fotos fondo"></a-plane>
             <a-plane material="src: img/caza-del-guanaco_personaje.png;" mixin="fotos dorama"></a-plane>
+            <a-plane material="src: img/caza-del-guanaco_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
         </a-marker>
 
         <!--  <a-marker type="pattern" url='markers/cara-selk.patt' id='cara-selk' mixin="logicas" info="cara selknam">
