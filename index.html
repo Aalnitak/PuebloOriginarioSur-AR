@@ -1,340 +1,258 @@
-<!doctype HTML>
-<html>
-<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
-<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
-<script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.8/aframe/build/aframe-ar.js"></script>
-<style>
-    .a-enter-vr-button {
-        display: none;
-    }
-    
-    .estilo {
-        font-size: 20px;
-        color: deeppink;
-        font-weight: bolder;
-        white-space: nowrap;
-        position: absolute;
-    }
-    
-    #hud {
-        position: absolute;
-    }
-    
-    #hud>.estilo:nth-child(1) {
-        top: 10px;
-        left: 30px;
-    }
-    
-    #hud>.estilo:nth-child(2) {
-        top: 50px;
-        left: 60px;
-    }
-    
-    #hud>.estilo:nth-child(3) {
-        top: 30px;
-        left: 70px;
-    }
-</style>
-<script>
-    window.addEventListener('camera-init', (data) => {
-        console.log('camera-init', data);
-    })
-    window.addEventListener('camera-error', (error) => {
-        console.log('camera-error', error);
-    })
+<!-- import aframe and then ar.js with image tracking / location based features -->
+<script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
 
-    AFRAME.registerComponent('lejos-off', {
+<link rel="stylesheet" href="el.css">
+<script src="components.js"></script>
 
-        tick: function() {
-            let marker = this.el;
-            let camPos = new THREE.Vector3();
-            let dir = new THREE.Vector3();
-            let c = marker.children;
-            document.querySelector('a-entity[camera]').object3D.getWorldDirection(camPos);
-            let currPos = marker.object3D.position;
-
-            dir.copy(camPos).sub(currPos);
-
-            let distance = dir.length();
-            for (let i = 0; i < c.length; i++) {
-                if (distance > 15) {
-                    marker.children[i].setAttribute('visible', false);
-                } else {
-                    marker.children[i].setAttribute('visible', true);
-                }
-            }
-
-        }
-    });
-
-    AFRAME.registerComponent('info', {
-        schema: {
-            type: 'string',
-            default: "no hay nada"
-        },
-        init: function() {
-            const marker = this.el;
-            marker.addEventListener('markerFound', function() {
-                let p = document.createElement("p");
-                p.id = marker.id;
-                p.className = 'estilo';
-                p.innerHTML = marker.components.info.attrValue;
-                if (marker.firstElementChild.getAttribute('visible') == true) {
-                    document.getElementById('hud').appendChild(p)
-                }
-            });
-            marker.addEventListener('markerLost', function() {
-                document.getElementById(marker.id).remove();
-            });
-
-        }
-    })
-
-
-    AFRAME.registerComponent('popup', {
-        init: function() {
-            const marker = this.el;
-            let c = marker.children;
-
-            marker.addEventListener('markerFound', function() {
-
-                for (let i = 0; i < c.length; i++) {
-                    marker.children[i].setAttribute('animation__rotation', {
-                        property: 'rotation',
-                        from: '-200 0 0',
-                        to: '-110 0 0',
-                        dur: 4000,
-                        loop: 1
-                    });
-                    marker.children[i].setAttribute('rotation', '-110 0 0');
-                }
-            });
-            marker.addEventListener('markerLost', function() {
-                for (let i = 0; i < c.length; i++) {
-                    marker.children[i].setAttribute('animation__rotation', {
-                        property: 'rotation',
-                        from: '-200 0 0',
-                        to: '-110 0 0',
-                        dur: 4000,
-                        loop: 3
-                    });
-                    marker.children[i].setAttribute('rotation', '-200 0 0');
-                }
-            });
-        },
-
-
-
-    });
-
-    AFRAME.registerComponent('fade-in', {
-        init: function() {
-            const marker = this.el;
-            let c = marker.children;
-
-            marker.addEventListener('markerFound', function() {
-
-                for (let i = 0; i < c.length; i++) {
-                    marker.children[i].setAttribute('animation__fade', {
-                        property: 'material.opacity',
-                        from: '0',
-                        to: '1',
-                        dur: 4000,
-                        loop: 1
-                    });
-                    marker.children[i].setAttribute('material.opacity', '1');
-                }
-
-            });
-            marker.addEventListener('markerLost', function() {
-
-                for (let i = 0; i < c.length; i++) {
-                    marker.children[i].setAttribute('animation__fade', {
-                        property: 'material.opacity',
-                        from: '1',
-                        to: '0',
-                        dur: 4000,
-                        loop: 3
-                    });
-                    marker.children[i].setAttribute('material.opacity', '0');
-                }
-
-            });
-        },
-
-    });
-
-    AFRAME.registerComponent('lookat', {
-
-        tick: function() {
-            let marker = this.el;
-            let c = marker.children;
-            let camPos = new THREE.Vector3();
-            document.querySelector('a-entity[camera]').object3D.getWorldDirection(camPos);
-
-            for (let i = 0; i < c.length; i++) {
-                marker.children[i].object3D.lookAt(camPos);
-            }
-            // marker.object3D.lookAt(camPos);
-        }
-
-    });
-
-    AFRAME.registerComponent('olas', {
-
-        init: function() {
-            let marker = this.el;
-            marker.addEventListener('markerFound', function() {
-                marker.children[0].setAttribute('animation__olas', {
-                    property: 'position',
-                    from: '-0.03 0.5 0',
-                    to: '0.03 0.5 0',
-                    dir: 'alternate',
-                    dur: 2000,
-                    loop: 30
-                });
-                marker.children[1].setAttribute('animation__olas', {
-                    property: 'position',
-                    from: '0.03 0 0',
-                    to: '-0.03 0 0',
-                    dir: 'alternate',
-                    dur: 2000,
-                    loop: 30
-                });
-
-            });
-            marker.addEventListener('markerLost', function() {
-                marker.children[0].setAttribute('animation__olas', {
-                    property: 'position',
-                    from: '-0.03 0.5 0',
-                    to: '0.03 0.5 0',
-                    dir: 'alternate',
-                    dur: 2000,
-                    loop: 1
-                });
-                marker.children[1].setAttribute('animation__olas', {
-                    property: 'position',
-                    from: '0.03 0 0',
-                    to: '-0.03 0 0',
-                    dir: 'alternate',
-                    dur: 2000,
-                    loop: 1
-                });
-
-            });
-        }
-
-    });
-</script>
-
-<body style='margin : 0px; overflow: hidden;'>
-    <!-- hasta el momento se agregan P a el hud -->
-    <!-- ahora hay que cargar imagenes en png en espacios predefinidos por id. parametro pasado por tag html<<<<<<<<<<<<-->
-
-    <div id="hud" style='position: absolute; top: 10px; left: 5px; text-align: center; z-index: 1;'>
-
+<body style="margin : 0px; overflow: hidden;">
+  <!-- minimal loader shown until image descriptors are loaded. Loading may take a while according to the device computational power -->
+  <div class="arjs-loader">
+    <div>
+        <img src="loading.gif" alt="loading">
     </div>
+  </div>
 
+  <div id="hud">
+    <p class="estilo">ajsdouahsdoi</p>
+  </div>
 
+  <!-- a-frame scene -->
+  <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded
+    arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
+  >
+    <!-- a-nft is the anchor that defines an Image Tracking entity -->
+    <!-- on 'url' use the path to the Image Descriptors created before. -->
+    <!-- the path should end with the name without the extension e.g. if file is 'pinball.fset' the path should end with 'pinball' -->
+    
+    <!-- NFT 0 PLANTILLA-->
+    <a-nft id="nft0"
+      type="nft"
+      url="https://test.truear.net/nft/markers/mark-aonikenk/mark-aonikenk"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/aonikenk/kau_paisaje.png; alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
 
-    <!-- para usar un marker con el borde mas pequeño hay que hacerlo en el maker. pero tambien hay que ponerlo en el arjs=""
-    tendria que ser arjs="patternRatio: 0.75" para un marker 75% dibujo 25% borde , por default: 0.5-->
-    <a-scene embedded renderer="precision: mediump" arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false; patternRatio: 0.75;'>
+          <a-plane material="src: https://test.truear.net/nft/img/aonikenk/kau_personaje.png; alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
+    
+    
+    <!-- NFT 1 - yagan 1 -->
+    <a-nft id="yagan-1"
+      type="nft"
+      url="https://test.truear.net/nft/markers/yagan-ballena/yagan-ballena"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+      info="Caza del Lobo - Yagan"
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/yagan/caza-del-lobo-con-ampon-grande_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
 
+          <a-plane material="src: https://test.truear.net/nft/img/yagan/caza-del-lobo-con-ampon-grande_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
 
-        <a-assets>
-            <img id="lobo-yagan" src="img/lobo-yagan.png">
-            <img id="barco" src="img/barco.png">
-            <img id="barco-2" src="img/barco-2.png">
-            <img id="caza-guanaco" src="img/caza-guanaco.png">
-            <img id="caza-guanaco-paisaje" src="img/caza_del_guanaco_PAISAJE.png">
-            <img id="caza-guanaco-personajes" src="img/caza_del_guanaco_PERSONAJES.png">
-            <img id="caza-del-lobo-paisaje" src="img/caza_del_lobo_con_ampon_grande_yagan_PAISAJE.png">
-            <img id="caza-del-lobo-personajes" src="img/caza_del_lobo_con_ampon_grande_yagan_PERSONAJES.png">
-            <img id="mujeres-ninos-selknam" src="img/mujeres-ninos-selknam.png">
+    
 
+    <!-- NFT 2  yagan - falta imagen-->
+    <a-nft id="yagan-2"
+      type="nft"
+      url="https://test.truear.net/nft/markers/yagan-pinguino/yagan-pinguino"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+      info="Caza del Lobo - Yagan (Extra)"
 
-            <a-mixin id="logicas" popup lookat fade-in lejos-off></a-mixin>
-            <a-mixin id="fotos" scale="2 2 2" rotation="-90 0 0" material="alphaTest: 0.5; opacity: 0; transparent: true;"></a-mixin>
-            <a-mixin id="dorama" position="0 1 0"></a-mixin>
-            <a-mixin id="dorama-oculto" position="0 -1 0"></a-mixin>
-            <a-mixin id="fondo" position="0 0 0"></a-mixin>
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/yagan/caza-del-lobo-con-ampon-grande_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
 
-        </a-assets>
+          <a-plane material="src: https://test.truear.net/nft/img/yagan/caza-del-lobo-con-ampon-grande_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
 
-        <!-- trabajando en este marker. -->
-        <a-marker type="pattern" url='marker/patt/yagan-2.patt' id='marker-white' mixin="logicas" olas info="Barco">
-            <a-plane material="src: img/barco-agua.png;" mixin="fotos dorama"></a-plane>
-            <a-plane material="src: img/barco.png;" mixin="fotos fondo"></a-plane>
-        </a-marker>
-        <!-- marker de prueba doble foto 1 -->
-        <a-marker type="pattern" url='marker/patt/aonikenk-2.patt' id='aonikenk2' mixin="logicas" info="Caza de ñandú">
-            <a-plane material="src: img/caza-de-nandu_paisaje.png;" mixin="fotos fondo"></a-plane>
-            <a-plane material="src: img/caza-de-nandu_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
-            <a-plane material="src: img/caza-de-nandu_personaje.png;" mixin="fotos dorama"></a-plane>
-            <!-- <a-plane material="src: img/caza_del_guanaco_PERSONAJES.png;" mixin="fotos dorama"></a-plane> -->
-        </a-marker>
-        <!-- marker de prueba doble foto 2 -->
-        <a-marker type="pattern" url='marker/patt/selknam-2.patt' id='selknam2' mixin="logicas" olas info="Caza del guanaco">
-            <a-plane material="src: img/caza-del-guanaco_paisaje.png;" mixin="fotos fondo"></a-plane>
-            <a-plane material="src: img/caza-del-guanaco_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
-            <a-plane material="src: img/caza-del-guanaco_personaje.png;" mixin="fotos dorama"></a-plane>
-        </a-marker>
-        <!-- marker de prueba doble foto 2 -->
-        <a-marker type="pattern" url='marker/patt/yagan-1.patt' id='yagan1' mixin="logicas" olas info="Caza del lobo con ampon grande">
-            <a-plane material="src: img/yagan/caza-del-lobo-con-ampon-grande_paisaje.png;" mixin="fotos fondo"></a-plane>
-            <a-plane material="src: img/yagan/caza-del-lobo-con-ampon-grande_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
-            <a-plane material="src: img/yagan/caza-del-lobo-con-ampon-grande_personaje.png;" mixin="fotos dorama"></a-plane>
-        </a-marker>
-        <!-- marker de prueba doble foto 2 -->
-        <a-marker type="pattern" url='marker/patt/selknam-1.patt' id='selknam1' mixin="logicas" olas info="Caravana de mujeres y niños Selknam">
-            <a-plane material="src: img/selknam/caravana-de-mujeres-y-ninos-selknam_paisaje.png;" mixin="fotos fondo"></a-plane>
-            <a-plane material="src: img/selknam/caravana-de-mujeres-y-ninos-selknam_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
-            <a-plane material="src: img/selknam/caravana-de-mujeres-y-ninos-selknam_personaje.png;" mixin="fotos dorama"></a-plane>
-        </a-marker>
-        <!-- marker de prueba doble foto 2 -->
-        <a-marker type="pattern" url='marker/patt/kawesqar-1.patt' id='kawesqar1' mixin="logicas" olas info="Familia Kawesqar en canoa">
-            <a-plane material="src: img/kawesqar/familia-kawesqar-en-canoa_paisaje.png;" mixin="fotos fondo"></a-plane>
-            <a-plane material="src: img/kawesqar/familia-kawesqar-en-canoa_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
-            <a-plane material="src: img/kawesqar/familia-kawesqar-en-canoa_personaje.png" mixin="fotos dorama"></a-plane>
-        </a-marker>
-        <!-- marker de prueba doble foto 2 -->
-        <a-marker type="pattern" url='marker/patt/kawesqar-2.patt' id='kawesqar2' mixin="logicas" olas info="Asechando a los lobos">
-            <a-plane material="src: img/kawesqar/asechando-a-los-lobos_paisaje.png;" mixin="fotos fondo"></a-plane>
-            <a-plane material="src: img/kawesqar/asechando-a-los-lobos_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
-            <a-plane material="src: img/kawesqar/asechando-a-los-lobos_personaje.png;" mixin="fotos dorama"></a-plane>
-        </a-marker>
-        <!-- marker de prueba doble foto 2 -->
-        <a-marker type="pattern" url='marker/patt/aonikenk-1.patt' id='aonikenk-1' mixin="logicas" olas info="Kau Aonikenk">
-            <a-plane material="src: img/aonikenk/kau_paisaje.png;" mixin="fotos fondo"></a-plane>
-            <a-plane material="src: img/aonikenk/kau_personaje.png;" mixin="fotos dorama-oculto"></a-plane>
-            <a-plane material="src: img/aonikenk/kau_personaje.png;" mixin="fotos dorama"></a-plane>
-        </a-marker>
+    <!-- NFT 3 selknam 1-->
+    <a-nft id="selknam-1"
+      type="nft"
+      url="https://test.truear.net/nft/markers/selknam-zorro/selknam-zorro"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+      info="Caravana de mujeres y niños - Selknam"
 
-        <!--  <a-marker type="pattern" url='markers/cara-selk.patt' id='cara-selk' mixin="logicas" info="cara selknam">
-            <a-plane material="src: img/selk2.jpg" mixin="fotos fondo"></a-plane>
-            <a-plane material="src: #lobo-yagan" mixin="fotos dorama"></a-plane> 
-        </a-marker> 
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/selknam/caravana-de-mujeres-y-ninos-selknam_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
 
-        <a-marker type="pattern" url='markers/selk-black.patt' id='black' fade-in lookat info="selknam black">
-            <a-plane material="src: img/selknam1.jpg;" mixin="fotos fondo"></a-plane>
-            <!-- <a-plane material="src: img/barco-2.png;" mixin="fotos dorama"></a-plane>
-        </a-marker>
+          <a-plane material="src: https://test.truear.net/nft/img/selknam/caravana-de-mujeres-y-ninos-selknam_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
 
-        <a-marker type="pattern" url='markers/selk-white.patt' id='white' mixin="logicas" info="selknam white">
-            <a-plane  material="src: img/selk3.jpg" mixin="fotos fondo" ></a-plane>
+    <!-- NFT 4 selknam 2-->
+    <a-nft id="selknam-2"
+      type="nft"
+      url="https://test.truear.net/nft/markers/selknam-guanaco/selknam-guanaco"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+      info="Caza del Guanaco - Selknam"
 
-        </a-marker>
-        
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/selknam/caza-del-guanaco_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
 
-        <a-marker type="barcode" value="28" lookat fade-in info="mujeres y niños selknam">
-            <a-plane src="#mujeres-ninos-selknam" rotation="50 0 0"></a-plane>
-        </a-marker>  -->
+          <a-plane material="src: https://test.truear.net/nft/img/selknam/caza-del-guanaco_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
 
-        <a-light type="directional" color="#fff" intensity="0.2" position="-1 2 1" light=""></a-light>
-        <a-light type="ambient" color="#fff" light=""></a-light>
-        <a-entity camera></a-entity>
-    </a-scene>
+    <!-- NFT 5 aonikenk 1 -->
+    <a-nft id="aonikenk-1"
+      type="nft"
+      url="https://test.truear.net/nft/markers/aonikenk-nandu/aonikenk-nandu"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+      info="Caza de Ñandú - Aonikenk"
+
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/aonikenk/caza-de-nandu_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
+
+          <a-plane material="src: https://test.truear.net/nft/img/aonikenk/caza-de-nandu_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
+    
+    <!-- NFT 6 aonikenk 2 -->
+    <a-nft id="aonikenk-2"
+      type="nft"
+      url="https://test.truear.net/nft/markers/aonikenk-guanaco/aonikenk-guanaco"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+      info="Kau - Aonikenk"
+
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/aonikenk/kau_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
+
+          <a-plane material="src: https://test.truear.net/nft/img/aonikenk/kau_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
+
+    <!-- NFT 7 kawesqar 1 -->
+    <a-nft id="kawesqar-1"
+      type="nft"
+      url="https://test.truear.net/nft/markers/kawesqar-foca/kawesqar-foca"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+      info="Familia en Canoa - Kawesqar"
+
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/kawesqar/familia-kawesqar-en-canoa_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
+
+          <a-plane material="src: https://test.truear.net/nft/img/kawesqar/familia-kawesqar-en-canoa_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
+
+    <!-- NFT 8 kawesqar 2 -->
+    <a-nft id="kawesqar-2"
+      type="nft"
+      url="https://test.truear.net/nft/markers/kawesqar-lobo/kawesqar-lobo"
+      smooth="true" smoothCount="10" smoothTolerance=".01"  smoothThreshold="5"
+      fade-in lookat popup
+      info="Acechando a Lobos - Kawesqar"
+
+    >
+      <a-plane material="src: https://test.truear.net/nft/img/kawesqar/asechando-a-los-lobos_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
+
+          <a-plane material="src: https://test.truear.net/nft/img/kawesqar/asechando-a-los-lobos_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
+    </a-nft>
+
+    <!-- camara -->
+
+    <a-entity camera></a-entity>
+  </a-scene>
 </body>
-
-</html>
