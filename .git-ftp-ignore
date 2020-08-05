@@ -6,3 +6,5 @@
 .git-ftp-ignore
 .git-ftp-include
 .gitlab-ci.yml
+.DS_Store
+*/.DS_Store
