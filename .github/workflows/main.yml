@@ -1,5 +1,5 @@
 on: push
-name: Publish Website
+name: Publish Website over FTPS
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
@@ -11,6 +11,7 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
-        ftp-server: ftp://ftp.truear.net/
+        ftp-server: ftps://ftp.truear.net/
         ftp-username: alnitak
         ftp-password: ${{ secrets.FTP_PASSWORD }}
+        git-ftp-args: --insecure # if your certificate is setup correctly this can be removed
