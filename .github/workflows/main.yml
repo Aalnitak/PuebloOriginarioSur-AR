@@ -11,7 +11,7 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
-        ftp-server: ftps://ftp.truear.net/:21
+        ftp-server: ftps://ftp.truear.net:21/public_html/test/nft/
         ftp-username: alnitak@truear.net
         ftp-password: ${{ secrets.FTP_PASSWORD }}
         git-ftp-args: --insecure # if your certificate is setup correctly this can be removed
