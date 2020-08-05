@@ -12,5 +12,5 @@ jobs:
       uses: SamKirkland/FTP-Deploy-Action@3.1.1
       with:
         ftp-server: ftp://ftp.truear.net/
-        ftp-username: alnitak@truear.net
+        ftp-username: alnitak
         ftp-password: ${{ secrets.FTP_PASSWORD }}
