@@ -1,5 +1,5 @@
 on: push
-name: Publish Website over FTP
+name: push nft
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
