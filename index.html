@@ -27,8 +27,21 @@
  
 <!-- trabajando en este marker. -->
 <a-marker type="pattern" url='markers/patt/yagan-2.patt' id='marker1' mixin="logicas" olas info="Barco">
-  <a-plane material="src: img/barco-agua.png;" mixin="fotos dorama"></a-plane>
-  <a-plane material="src: img/barco.png;" mixin="fotos fondo"></a-plane>
+  
+  <a-plane material="src: https://test.truear.net/nft/img/yagan/caza-del-lobo-con-ampon-grande_paisaje.png; 
+      alphaTest: 0.5; opacity: 0; transparent: true;" 
+        rotation="-90 0 0"
+        height="500" width="500" fade-in-in
+        position="0 0 -100">
+
+          <a-plane material="src: https://test.truear.net/nft/img/yagan/caza-del-lobo-con-ampon-grande_personaje.png; 
+          alphaTest: 0.5; opacity: 0; transparent: true;" 
+          rotation="0 0 0" 
+          height="500" width="500"
+          position="0 0 100"></a-plane>
+      
+      </a-plane>
+  
 </a-marker>
 
     <!-- camara -->
