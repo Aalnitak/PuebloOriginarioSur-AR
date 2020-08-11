@@ -1,6 +1,6 @@
 <!-- import aframe and then ar.js with image tracking / location based features -->
 <script src="https://cdn.jsdelivr.net/gh/aframevr/aframe@1c2407b26c61958baa93967b5412487cd94b290b/dist/aframe-master.min.js"></script>
-<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+<script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
 
 <link rel="stylesheet" href="el.css">
 <script src="components.js"></script>
@@ -25,7 +25,11 @@
     arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"
   >
  
-
+<!-- trabajando en este marker. -->
+<a-marker type="pattern" url='markers/patt/yagan-2.patt' id='marker1' mixin="logicas" olas info="Barco">
+  <a-plane material="src: img/barco-agua.png;" mixin="fotos dorama"></a-plane>
+  <a-plane material="src: img/barco.png;" mixin="fotos fondo"></a-plane>
+</a-marker>
 
     <!-- camara -->
 
