@@ -218,14 +218,14 @@ AFRAME.registerComponent('olas', {
                 dur: 2000,
                 loop: 30
             });
-            marker.children[1].setAttribute('animation__olas', {
-                property: 'position',
-                from: '0.03 0 0',
-                to: '-0.03 0 0',
-                dir: 'alternate',
-                dur: 2000,
-                loop: 30
-            });
+            // marker.children[1].setAttribute('animation__olas', {
+            //     property: 'position',
+            //     from: '0.03 0 0',
+            //     to: '-0.03 0 0',
+            //     dir: 'alternate',
+            //     dur: 2000,
+            //     loop: 30
+            // });
 
         });
         marker.addEventListener('markerLost', function() {
@@ -237,14 +237,14 @@ AFRAME.registerComponent('olas', {
                 dur: 2000,
                 loop: 1
             });
-            marker.children[1].setAttribute('animation__olas', {
-                property: 'position',
-                from: '0.03 0 0',
-                to: '-0.03 0 0',
-                dir: 'alternate',
-                dur: 2000,
-                loop: 1
-            });
+            // marker.children[1].setAttribute('animation__olas', {
+            //     property: 'position',
+            //     from: '0.03 0 0',
+            //     to: '-0.03 0 0',
+            //     dir: 'alternate',
+            //     dur: 2000,
+            //     loop: 1
+            // });
 
         });
     }

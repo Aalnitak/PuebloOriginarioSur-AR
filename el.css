@@ -1,4 +1,40 @@
-/* estilos para el loading.. */
+.a-enter-vr-button {
+    display: none;
+}
+
+.estilo {
+    font-size: 20px;
+    color: deeppink;
+    font-weight: bolder;
+    white-space: nowrap;
+    position: absolute;
+}
+
+#hud {
+    position: absolute;
+}
+
+#hud>.estilo:nth-child(1) {
+    top: 10px;
+    left: 30px;
+}
+
+#hud>.estilo:nth-child(2) {
+    top: 50px;
+    left: 60px;
+}
+
+#hud>.estilo:nth-child(3) {
+    top: 30px;
+    left: 70px;
+}
+
+
+
+/* --- version nft ---
+
+
+/* estilos para el loading.. 
 .arjs-loader {
     height: 100%;
     width: 100%;
@@ -21,7 +57,7 @@
       height: auto;
       width: 20vw;
   }
-/* estilos para hub */
+/* estilos para hub 
 .estilo {
     font-size: 20px;
     color: deeppink;
@@ -51,4 +87,5 @@
 #hud>.estilo:nth-child(3) {
     top: 30px;
     left: 70px;
-}
+} */
+
