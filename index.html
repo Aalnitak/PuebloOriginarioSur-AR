@@ -15,30 +15,17 @@
     </div>
     <!-- para usar un marker con el borde mas pequeño hay que hacerlo en el maker. pero tambien hay que ponerlo en el arjs=""
     tendria que ser arjs="patternRatio: 0.75" para un marker 75% dibujo 25% borde , por default: 0.5-->
-    <a-scene embedded renderer="precision: mediump" arjs='sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; debugUIEnabled: false; patternRatio: 0.75;'>
-        <a-assets>
-            <!-- <img id="lobo-yagan" src="img/lobo-yagan.png">
-            <img id="barco" src="img/barco.png">
-            <img id="barco-2" src="img/barco-2.png">
-            <img id="caza-guanaco" src="img/caza-guanaco.png">
-            <img id="caza-guanaco-paisaje" src="img/caza_del_guanaco_PAISAJE.png">
-            <img id="caza-guanaco-personajes" src="img/caza_del_guanaco_PERSONAJES.png">
-            <img id="caza-del-lobo-paisaje" src="img/caza_del_lobo_con_ampon_grande_yagan_PAISAJE.png">
-            <img id="caza-del-lobo-personajes" src="img/caza_del_lobo_con_ampon_grande_yagan_PERSONAJES.png">
-            <img id="mujeres-ninos-selknam" src="img/mujeres-ninos-selknam.png"> -->
+    <a-scene embedded renderer="precision: mediump" arjs='sourceType: webcam; 
+    detectionMode: mono_and_matrix; matrixCodeType: 3x3; 
+    debugUIEnabled: false; patternRatio: 0.75;'>
 
-            
+        <a-assets>
+                      
             <a-mixin id="marker" fade-in lookat popup></a-mixin>
             <a-mixin id="barco" olas></a-mixin>
             <a-mixin id="fotos" scale="2 2 2" rotation="-90 0 0" ></a-mixin>
             
-        
-
         </a-assets>
-
-        <!-- <a-marker preset="hiro">
-          <a-box position='0 0.5 0' material='color: yellow;'></a-box>
-      </a-marker> -->
 
  
         <a-marker type="pattern" url='markers/patt/aonikenk-1.patt' id='1' mixin="marker">
@@ -80,12 +67,12 @@
             <a-plane material="src: img/yagan/eowair.png" mixin="fotos"></a-plane>
         </a-marker>
 
-<!--  
-        <a-marker type="pattern" url='markers/patt/m1.patt' id='9' mixin="marker barco">
+
+        <a-marker type="pattern" url='markers/patt/barco1.patt' id='9' mixin="marker barco">
             <a-plane material="src: img/barco/barco1.png" mixin="fotos"></a-plane>
         </a-marker>
 
- 
+ <!--  
         <a-marker type="pattern" url='markers/patt/m2.patt' id='10' mixin="marker barco">
             <a-plane material="src: img/barco/barco2.png" mixin="fotos"></a-plane>
         </a-marker>
