@@ -59,16 +59,21 @@ AFRAME.registerComponent('infoPNG', {
     },
     init: function() {
         const marker = this.el;
-        const img = document.querySelector('#imagen-txt')
+        const img = document.getElementById("imagen-txt")
         marker.addEventListener('markerFound', function() {
             
             if (marker.firstElementChild.getAttribute('visible') == true) {
-                img.src = marker.components.info.attrValue;
+                img.setAttribute("src", marker.components.info.attrValue ) 
+                img.setAttribute("alt", marker.components.info.attrValue ) 
+               
+                img.style.display = "block";
             }
         });
-        
+
         marker.addEventListener('markerLost', function() {
-            img.src = ""
+            img.setAttribute("src", "" ) 
+            img.setAttribute("alt", "" ) 
+            img.style.display = "none"
         });
 
     }
