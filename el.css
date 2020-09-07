@@ -4,7 +4,7 @@
 
 
 #hud {
-    position: fixed;
+    position: static;
     width: 60vw;
     height: auto;
     padding-top: 5vh;
