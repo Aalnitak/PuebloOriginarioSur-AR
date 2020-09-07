@@ -50,17 +50,39 @@ AFRAME.registerComponent('info', {
         });
 
     }
-})
+});
+
+AFRAME.registerComponent('infoPNG', {
+    schema: {
+        type: 'string',
+        default: "no hay nada"
+    },
+    init: function() {
+        const marker = this.el;
+        const img = document.querySelector('#imagen-txt')
+        marker.addEventListener('markerFound', function() {
+            
+            if (marker.firstElementChild.getAttribute('visible') == true) {
+                img.src = marker.components.info.attrValue;
+            }
+        });
+        
+        marker.addEventListener('markerLost', function() {
+            img.src = ""
+        });
+
+    }
+});
 
 
 AFRAME.registerComponent('popup', {
     init: function() {
         const marker = this.el;
-        let c = marker.children;
+        // let c = marker.children;
 
         marker.addEventListener('markerFound', function() {
 
-            for (let i = 0; i < c.length; i++) {
+            // for (let i = 0; i < c.length; i++) {
                 marker.firstElementChild.setAttribute('animation__rotation', {
                     property: 'rotation',
                     from: '-200 0 0',
@@ -69,10 +91,10 @@ AFRAME.registerComponent('popup', {
                     loop: 1
                 });
                 marker.firstElementChild.setAttribute('rotation', '-110 0 0');
-            }
+            // }
         });
         marker.addEventListener('markerLost', function() {
-            for (let i = 0; i < c.length; i++) {
+            // for (let i = 0; i < c.length; i++) {
                 marker.firstElementChild.setAttribute('animation__rotation', {
                     property: 'rotation',
                     from: '-200 0 0',
@@ -81,7 +103,7 @@ AFRAME.registerComponent('popup', {
                     loop: 3
                 });
                 marker.firstElementChild.setAttribute('rotation', '-200 0 0');
-            }
+            // }
         });
     },
 
@@ -103,12 +125,8 @@ AFRAME.registerComponent('popup2', {
                     loop: 1
                 });
                 marker.firstElementChild.setAttribute('rotation', '-90 0 0');
-        });
-        
+        });        
     },
-
-
-
 });
 
 
@@ -116,11 +134,11 @@ AFRAME.registerComponent('popup2', {
 AFRAME.registerComponent('fade-in', {
     init: function() {
         const marker = this.el;
-        let c = marker.children;
+        // let c = marker.children;
 
         marker.addEventListener('markerFound', function() {
 
-            for (let i = 0; i < c.length; i++) {
+            // for (let i = 0; i < c.length; i++) {
                 marker.firstElementChild.setAttribute('animation__fade', {
                     property: 'material.opacity',
                     from: '0',
@@ -129,12 +147,12 @@ AFRAME.registerComponent('fade-in', {
                     loop: 1
                 });
                 marker.firstElementChild.setAttribute('material.opacity', '1');
-            }
+            // }
 
         });
         marker.addEventListener('markerLost', function() {
 
-            for (let i = 0; i < c.length; i++) {
+            // for (let i = 0; i < c.length; i++) {
                 marker.firstElementChild.setAttribute('animation__fade', {
                     property: 'material.opacity',
                     from: '1',
@@ -143,50 +161,12 @@ AFRAME.registerComponent('fade-in', {
                     loop: 3
                 });
                 marker.firstElementChild.setAttribute('material.opacity', '0');
-            }
+            // }
 
         });
     },
 
 });
-AFRAME.registerComponent('fade-in-in', {
-    init: function() {
-        const par = this.el;
-        let c = par.children;
-
-        par.parentNode.addEventListener('markerFound', function() {
-            console.log('entro al markerfound');
-            for (let i = 0; i < c.length; i++) {
-                par.firstElementChild.setAttribute('animation__fade', {
-                    property: 'material.opacity',
-                    from: '0',
-                    to: '1',
-                    dur: 4000,
-                    loop: 1
-                });
-                par.firstElementChild.setAttribute('material.opacity', '1');
-            }
-
-        });
-        par.parentNode.addEventListener('markerLost', function() {
-
-            for (let i = 0; i < c.length; i++) {
-                par.firstElementChild.setAttribute('animation__fade', {
-                    property: 'material.opacity',
-                    from: '1',
-                    to: '0',
-                    dur: 4000,
-                    loop: 3
-                });
-                par.firstElementChild.setAttribute('material.opacity', '0');
-            }
-
-        });
-    },
-
-});
-
-
 
 AFRAME.registerComponent('lookat', {
 

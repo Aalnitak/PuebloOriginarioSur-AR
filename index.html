@@ -12,6 +12,8 @@
 <body style='margin : 0px; overflow: hidden;'>
     <!-- hasta el momento se agregan P a el hud -->
     <div id="hud" style='position: absolute; top: 10px; left: 5px; text-align: center; z-index: 1;'>
+        <img id="imagen-txt" src="" alt="imagen-texto">
+   
     </div>
     <!-- para usar un marker con el borde mas pequeño hay que hacerlo en el maker. pero tambien hay que ponerlo en el arjs=""
     tendria que ser arjs="patternRatio: 0.75" para un marker 75% dibujo 25% borde , por default: 0.5-->
@@ -21,14 +23,14 @@
 
         <a-assets>
                       
-            <a-mixin id="marker" fade-in lookat popup></a-mixin>
+            <a-mixin id="marker" fade-in popup></a-mixin>
             <a-mixin id="barco" olas></a-mixin>
             <a-mixin id="fotos" scale="2 2 2" rotation="-90 0 0" ></a-mixin>
             
         </a-assets>
 
  
-        <a-marker type="pattern" url='markers/patt/aonikenk-1.patt' id='1' mixin="marker">
+        <a-marker type="pattern" url='markers/patt/aonikenk-1.patt' id='1' mixin="marker" infoPNG="img/text/kau.png">
             <a-plane material="src: img/aonikenk/kau-aonikenk.png" mixin="fotos"></a-plane>
         </a-marker>  
 
