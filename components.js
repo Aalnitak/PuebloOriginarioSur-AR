@@ -1,10 +1,3 @@
-window.addEventListener('camera-init', (data) => {
-    console.log('camera-init', data);
-})
-window.addEventListener('camera-error', (error) => {
-    console.log('camera-error', error);
-})
-
 AFRAME.registerComponent('lejos-off', {
 
     tick: function() {
@@ -18,18 +11,15 @@ AFRAME.registerComponent('lejos-off', {
         dir.copy(camPos).sub(currPos);
 
         let distance = dir.length();
-        for (let i = 0; i < c.length; i++) {
-            if (distance > 15) {
-                marker.firstElementChild.setAttribute('visible', false);
-            } else {
-                marker.firstElementChild.setAttribute('visible', true);
-            }
+        if (distance > 15) {
+            marker.firstElementChild.setAttribute('visible', false);
+        } else {
+            marker.firstElementChild.setAttribute('visible', true);
         }
-
     }
 });
 
-AFRAME.registerComponent('info', {
+AFRAME.registerComponent('info_p', {
     schema: {
         type: 'string',
         default: "no hay nada"
@@ -162,7 +152,7 @@ AFRAME.registerComponent('fade-in', {
                     property: 'material.opacity',
                     from: '0',
                     to: '1',
-                    dur: 4000,
+                    dur: 1000,
                     loop: 1
                 });
                 marker.firstElementChild.setAttribute('material.opacity', '1');
@@ -217,14 +207,7 @@ AFRAME.registerComponent('olas', {
                 dur: 2000,
                 loop: 30
             });
-            // marker.children[1].setAttribute('animation__olas', {
-            //     property: 'position',
-            //     from: '0.03 0 0',
-            //     to: '-0.03 0 0',
-            //     dir: 'alternate',
-            //     dur: 2000,
-            //     loop: 30
-            // });
+        
 
         });
         marker.addEventListener('markerLost', function() {
@@ -236,16 +219,19 @@ AFRAME.registerComponent('olas', {
                 dur: 2000,
                 loop: 1
             });
-            // marker.children[1].setAttribute('animation__olas', {
-            //     property: 'position',
-            //     from: '0.03 0 0',
-            //     to: '-0.03 0 0',
-            //     dir: 'alternate',
-            //     dur: 2000,
-            //     loop: 1
-            // });
+          
 
         });
     }
 
 });
+
+
+
+
+// window.addEventListener('camera-init', (data) => {
+//     console.log('camera-init', data);
+// })
+// window.addEventListener('camera-error', (error) => {
+//     console.log('camera-error', error);
+// })
