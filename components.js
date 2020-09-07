@@ -77,12 +77,12 @@ AFRAME.registerComponent('popup', {
   
                 marker.firstElementChild.setAttribute('animation__rotation', {
                     property: 'rotation',
-                    from: '90 0 0',
-                    to: '180 0 0',
+                    from: '-90 0 0',
+                    to: '0 0 0',
                     dur: 4000,
                     loop: 1
                 });
-                marker.firstElementChild.setAttribute('rotation', '90 0 0');
+                marker.firstElementChild.setAttribute('rotation', '0 0 0');
       
         });
         marker.addEventListener('markerLost', function() {
@@ -94,7 +94,7 @@ AFRAME.registerComponent('popup', {
                     dur: 4000,
                     loop: 3
                 });
-                marker.firstElementChild.setAttribute('rotation', '0 0 0');
+                marker.firstElementChild.setAttribute('rotation', '-90 0 0');
         });
     },
 });
