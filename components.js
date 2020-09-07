@@ -64,8 +64,8 @@ AFRAME.registerComponent('infopng', {
         marker.addEventListener('markerFound', function() {
             
             if (marker.firstElementChild.getAttribute('visible') == true) {
-                img.setAttribute("src", marker.components.info.attrValue ) 
-                img.setAttribute("alt", marker.components.info.attrValue ) 
+                img.setAttribute("src", marker.components.infopng.attrValue ) 
+                img.setAttribute("alt", marker.components.infopng.attrValue ) 
                
                 img.style.display = "block";
                 console.log("hello desde dentro")
