@@ -69,7 +69,6 @@ AFRAME.registerComponent('infopng', {
     }
 });
 
-
 AFRAME.registerComponent('popup', {
     init: function() {
         const marker = this.el;
@@ -96,13 +95,10 @@ AFRAME.registerComponent('popup', {
                     loop: 3
                 });
                 marker.firstElementChild.setAttribute('rotation', '0 0 0');
-            
         });
     },
-
-
-
 });
+
 //para version lookat
 AFRAME.registerComponent('popup2', { 
     init: function() {
@@ -122,23 +118,17 @@ AFRAME.registerComponent('popup2', {
         });
         marker.addEventListener('markerLost', function() {
           
-                marker.firstElementChild.setAttribute('animation__rotation', {
-                    property: 'rotation',
-                    from: '-200 0 0',
-                    to: '-110 0 0',
-                    dur: 4000,
-                    loop: 3
-                });
-                marker.firstElementChild.setAttribute('rotation', '-200 0 0');
-            
+            marker.firstElementChild.setAttribute('animation__rotation', {
+                property: 'rotation',
+                from: '-200 0 0',
+                to: '-110 0 0',
+                dur: 4000,
+                loop: 3
+            });
+            marker.firstElementChild.setAttribute('rotation', '-200 0 0');
         });
     },
-
-
-
 });
-
-
 
 AFRAME.registerComponent('fade-in', {
     init: function() {
@@ -193,7 +183,6 @@ AFRAME.registerComponent('lookat', {
 
 });
 
-
 AFRAME.registerComponent('olas', {
 
     init: function() {
@@ -207,8 +196,6 @@ AFRAME.registerComponent('olas', {
                 dur: 2000,
                 loop: 30
             });
-        
-
         });
         marker.addEventListener('markerLost', function() {
             marker.children[0].setAttribute('animation__olas', {
@@ -219,11 +206,8 @@ AFRAME.registerComponent('olas', {
                 dur: 2000,
                 loop: 1
             });
-          
-
         });
     }
-
 });
 
 
