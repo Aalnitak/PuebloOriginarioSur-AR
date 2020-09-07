@@ -66,17 +66,14 @@ AFRAME.registerComponent('infopng', {
             if (marker.firstElementChild.getAttribute('visible') == true) {
                 img.setAttribute("src", marker.components.infopng.attrValue ) 
                 img.setAttribute("alt", marker.components.infopng.attrValue ) 
-               
                 img.style.display = "block";
-                console.log("hello desde dentro")
             }
         });
 
         marker.addEventListener('markerLost', function() {
-            img.setAttribute("src", "" ) 
-            img.setAttribute("alt", "" ) 
+            img.setAttribute("src", "a" ) 
+            img.setAttribute("alt", "a" ) 
             img.style.display = "none"
-            console.log("hello desde afuera")
         });
 
     }
