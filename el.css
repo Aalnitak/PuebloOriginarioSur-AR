@@ -4,10 +4,12 @@
 
 
 #hud {
-    position: absolute;
-    width: 100vw;
+    position: fixed;
+    width: 60vw;
     height: auto;
     padding-top: 5vh;
+    z-index: 1;
+    margin: 0 auto;
 }
 #imagen-txt {
     width: 100%;
