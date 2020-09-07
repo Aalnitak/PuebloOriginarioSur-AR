@@ -2,32 +2,19 @@
     display: none;
 }
 
-.estilo {
-    font-size: 20px;
-    color: deeppink;
-    font-weight: bolder;
-    white-space: nowrap;
-    position: absolute;
-}
 
 #hud {
     position: absolute;
+    width: 100vw;
+    height: auto;
+    padding-top: 5vh;
+}
+#imagen-txt {
+    width: 100%;
+    height: auto;
 }
 
-#hud>.estilo:nth-child(1) {
-    top: 10px;
-    left: 30px;
-}
 
-#hud>.estilo:nth-child(2) {
-    top: 50px;
-    left: 60px;
-}
-
-#hud>.estilo:nth-child(3) {
-    top: 30px;
-    left: 70px;
-}
 
 
 
