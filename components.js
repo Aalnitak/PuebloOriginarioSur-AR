@@ -77,8 +77,8 @@ AFRAME.registerComponent('popup', {
   
                 marker.firstElementChild.setAttribute('animation__rotation', {
                     property: 'rotation',
-                    from: '0 0 0',
-                    to: '90 0 0',
+                    from: '90 0 0',
+                    to: '180 0 0',
                     dur: 4000,
                     loop: 1
                 });
