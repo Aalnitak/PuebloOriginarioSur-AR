@@ -52,7 +52,7 @@ AFRAME.registerComponent('info', {
     }
 });
 
-AFRAME.registerComponent('infoPNG', {
+AFRAME.registerComponent('infopng', {
     schema: {
         type: 'string',
         default: "no hay nada"
