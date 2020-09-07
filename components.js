@@ -60,6 +60,7 @@ AFRAME.registerComponent('infopng', {
     init: function() {
         const marker = this.el;
         const img = document.getElementById("imagen-txt")
+        console.log(img)
         marker.addEventListener('markerFound', function() {
             
             if (marker.firstElementChild.getAttribute('visible') == true) {
@@ -67,6 +68,7 @@ AFRAME.registerComponent('infopng', {
                 img.setAttribute("alt", marker.components.info.attrValue ) 
                
                 img.style.display = "block";
+                console.log("hello desde dentro")
             }
         });
 
@@ -74,6 +76,7 @@ AFRAME.registerComponent('infopng', {
             img.setAttribute("src", "" ) 
             img.setAttribute("alt", "" ) 
             img.style.display = "none"
+            console.log("hello desde afuera")
         });
 
     }
