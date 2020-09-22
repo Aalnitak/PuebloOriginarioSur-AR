@@ -78,11 +78,11 @@ AFRAME.registerComponent('popup', {
                 marker.firstElementChild.setAttribute('animation__rotation', {
                     property: 'rotation',
                     from: '-90 0 0',
-                    to: '0 0 0',
+                    to: '-15 0 0',
                     dur: 4000,
                     loop: 1
                 });
-                marker.firstElementChild.setAttribute('rotation', '0 0 0');
+                marker.firstElementChild.setAttribute('rotation', '-15 0 0');
       
         });
         marker.addEventListener('markerLost', function() {
