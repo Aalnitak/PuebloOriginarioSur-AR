@@ -180,6 +180,7 @@ AFRAME.registerComponent('fade-in-popup', {
                     from: '0.1',
                     to: '1',
                     dur: 4000,
+                    easing: 'easeInOutCubic',
                     loop: 1
                 });
                 marker.firstElementChild.setAttribute('material.opacity', '1');
@@ -188,7 +189,8 @@ AFRAME.registerComponent('fade-in-popup', {
                     property: 'rotation',
                     from: '-90 0 0',
                     to: '-50 0 0',
-                    dur: 8000,
+                    dur: 4000,
+                    easing: 'easeInOutCubic',
                     loop: 1
                 });
                 marker.firstElementChild.setAttribute('rotation', '-50 0 0');
