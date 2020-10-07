@@ -174,8 +174,15 @@ AFRAME.registerComponent('fade-in-popup', {
         // let c = marker.children;
 
         marker.addEventListener('markerFound', function() {
-                marker.firstElementChild.setAttribute("style", "animation: 3s fadein");
-                // marker.firstElementChild.setAttribute('material.opacity', '1');
+
+                marker.firstElementChild.setAttribute('animation__fade', {
+                    property: 'material.opacity',
+                    from: '0.1',
+                    to: '1',
+                    dur: 4000,
+                    loop: 1
+                });
+                marker.firstElementChild.setAttribute('material.opacity', '1');
                 
                 marker.firstElementChild.setAttribute('animation__rotation', {
                     property: 'rotation',
@@ -191,14 +198,14 @@ AFRAME.registerComponent('fade-in-popup', {
         marker.addEventListener('markerLost', function() {
 
           
-                // marker.firstElementChild.setAttribute('animation__fade', {
-                //     property: 'material.opacity',
-                //     from: '1',
-                //     to: '0',
-                //     dur: 4000,
-                //     loop: 3
-                // });
-                // marker.firstElementChild.setAttribute('material.opacity', '0');
+                marker.firstElementChild.setAttribute('animation__fade', {
+                    property: 'material.opacity',
+                    from: '1',
+                    to: '0',
+                    dur: 4000,
+                    loop: 3
+                });
+                marker.firstElementChild.setAttribute('material.opacity', '0');
 
                 marker.firstElementChild.setAttribute('animation__rotation', {
                     property: 'rotation',
