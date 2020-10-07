@@ -18,7 +18,7 @@ AFRAME.registerComponent('lejos-off', {
         }
     }
 });
-
+// info de prueba que agrega un texto a un tag <p> en un <div id="hud">
 AFRAME.registerComponent('info_p', {
     schema: {
         type: 'string',
@@ -78,8 +78,8 @@ AFRAME.registerComponent('popup', {
                 marker.firstElementChild.setAttribute('animation__rotation', {
                     property: 'rotation',
                     from: '-90 0 0',
-                    to: '-25 0 0',
-                    dur: 4000,
+                    to: '-50 0 0',
+                    dur: 8000,
                     loop: 1
                 });
                 marker.firstElementChild.setAttribute('rotation', '-25 0 0');
@@ -140,9 +140,9 @@ AFRAME.registerComponent('fade-in', {
           
                 marker.firstElementChild.setAttribute('animation__fade', {
                     property: 'material.opacity',
-                    from: '0',
+                    from: '0.1',
                     to: '1',
-                    dur: 1000,
+                    dur: 4000,
                     loop: 1
                 });
                 marker.firstElementChild.setAttribute('material.opacity', '1');
