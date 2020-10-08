@@ -189,7 +189,7 @@ AFRAME.registerComponent('fade-in-popup', {
                 targets: marker.firstElementChild,
                 rotation: '-50 0 0',
                 loop: 1,
-            });
+            },'-=3000');
 
                 // marker.firstElementChild.setAttribute('animation__fade', {
                 //     property: 'material.opacity',
