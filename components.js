@@ -180,14 +180,14 @@ AFRAME.registerComponent('fade-in-popup', {
                 duration: 3000
 
             });
-            // tl.add({
-            //     targets: marker.firstElementChild,
-            //     opacity: 1,
-            //     loop: 1,
-            // });
             tl.add({
                 targets: marker.firstElementChild,
-                rotation: '-50 0 0',
+                opacity: 1,
+                loop: 1,
+            });
+            tl.add({
+                targets: marker.firstElementChild,
+                rotation: '50 0 0',
                 loop: 1,
             });
 
