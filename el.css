@@ -1,0 +1,88 @@
+.a-enter-vr-button {
+    display: none;
+}
+
+
+#hud {
+    position: static;
+    width: 60vw;
+    height: auto;
+    padding-top: 5vh;
+    z-index: 1;
+    margin: 0 auto;
+}
+#imagen-txt {
+    width: 100%;
+    height: auto;
+}
+
+@keyframes fadein {
+    from {
+      opacity: 0%;
+    }
+    
+    to {
+      opacity: 100%;
+    }
+  }
+
+
+
+/* --- version nft ---
+
+
+/* estilos para el loading.. 
+.arjs-loader {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #231e1d;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .arjs-loader div {
+    text-align: center;
+    font-size: 1.25em;
+    color: white;
+  }
+  .arjs-loader img{
+      height: auto;
+      width: 20vw;
+  }
+/* estilos para hub 
+.estilo {
+    font-size: 20px;
+    color: deeppink;
+    font-weight: bolder;
+    white-space: nowrap;
+    position: absolute;
+}
+
+#hud {
+    position: absolute; 
+    top: 10px; 
+    left: 5px; 
+    text-align: center; 
+    z-index: 1;
+}
+
+#hud>.estilo:nth-child(1) {
+    top: 10px;
+    left: 30px;
+}
+
+#hud>.estilo:nth-child(2) {
+    top: 50px;
+    left: 60px;
+}
+
+#hud>.estilo:nth-child(3) {
+    top: 30px;
+    left: 70px;
+} */
+

@@ -1,0 +1,95 @@
+<!doctype HTML>
+<html>
+<!-- vendor -->
+<script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
+<script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+<script src="https://raw.githack.com/jeromeetienne/AR.js/2.0.8/aframe/build/aframe-ar.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- custom -->
+<link rel="stylesheet" href="el.css">
+<script src="components.js"></script>
+
+<body style='margin : 0px; overflow: hidden;'>
+    
+    <div id="hud">
+        <img id="imagen-txt" src="" alt="" style="display: none;">
+   
+    </div>
+    <!-- para usar un marker con el borde mas pequeño hay que hacerlo en el maker. pero tambien hay que ponerlo en el arjs=""
+    tendria que ser arjs="patternRatio: 0.75" para un marker 75% dibujo 25% borde , por default: 0.5-->
+    <a-scene embedded renderer="precision: mediump" arjs='sourceType: webcam; 
+    detectionMode: mono_and_matrix; matrixCodeType: 3x3; 
+    debugUIEnabled: false; patternRatio: 0.65;'>
+
+        <a-assets>                      
+            <!-- <a-mixin id="marker" fade-in popup></a-mixin> -->
+            <a-mixin id="marker" fade-in-popup></a-mixin>
+            <a-mixin id="barco" olas></a-mixin>
+            <a-mixin id="fotos" material="opacity:0.1" scale="4 4 4" rotation="-90 0 0" ></a-mixin>
+        </a-assets>
+
+ 
+        <a-marker type="pattern" url='markers/patt/aonikenk-1.patt' id='1' mixin="marker" infopng="img/text/kau.png">
+            <a-plane material="src: img/aonikenk/kau-aonikenk.png" mixin="fotos"></a-plane>
+        </a-marker>  
+
+ 
+        <a-marker type="pattern" url='markers/patt/aonikenk-2.patt' id='2' mixin="marker" infopng="img/text/orege_ojo.png">
+            <a-plane material="src: img/aonikenk/orege-ojo.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ 
+        <a-marker type="pattern" url='markers/patt/kawesqar-1.patt' id='3' mixin="marker" infopng="img/text/kajef.png">
+            <a-plane material="src: img/kawesqar/familia-kawesqar-en-kalef.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ 
+        <a-marker type="pattern" url='markers/patt/kawesqar-2.patt' id='4' mixin="marker" infopng="img/text/cekeja.png">
+            <a-plane material="src: img/kawesqar/asechando-a-los-lobos.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ 
+        <a-marker type="pattern" url='markers/patt/selknam-1.patt' id='5' mixin="marker" infopng="img/text/or_ehani.png">
+            <a-plane material="src: img/selknam/or-ehani.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ 
+        <a-marker type="pattern" url='markers/patt/selknam-2.patt' id='6' mixin="marker" infopng="img/text/yohwen.png">
+            <a-plane material="src: img/selknam/yohwen.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ 
+        <a-marker type="pattern" url='markers/patt/yagan-1.patt' id='7' mixin="marker" infopng="img/text/lakar.png">
+            <a-plane material="src: img/yagan/familia-yagan-akar.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ 
+        <a-marker type="pattern" url='markers/patt/yagan-2.patt' id='8' mixin="marker" infopng="img/text/eowair.png">
+            <a-plane material="src: img/yagan/eowair.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+
+        <a-marker type="pattern" url='markers/patt/barco1.patt' id='9' mixin="marker barco">
+            <a-plane material="src: img/barco/barco1.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ <!--  
+        <a-marker type="pattern" url='markers/patt/m2.patt' id='10' mixin="marker barco">
+            <a-plane material="src: img/barco/barco2.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ 
+        <a-marker type="pattern" url='markers/patt/m3.patt' id='11' mixin="marker barco">
+            <a-plane material="src: img/barco/barco3.png" mixin="fotos"></a-plane>
+        </a-marker>
+
+ 
+        <a-marker type="pattern" url='markers/patt/m4.patt' id='12' mixin="marker barco">
+            <a-plane material="src: img/barco/barco4.png" mixin="fotos"></a-plane>
+        </a-marker>
+         -->
+        <a-entity camera></a-entity>
+    </a-scene>
+</body>
+
+</html>
