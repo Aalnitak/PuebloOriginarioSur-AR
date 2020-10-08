@@ -25,7 +25,7 @@
             <!-- <a-mixin id="marker" fade-in popup></a-mixin> -->
             <a-mixin id="marker" fade-in-popup></a-mixin>
             <a-mixin id="barco" olas></a-mixin>
-            <a-mixin id="fotos" scale="4 4 4" rotation="-90 0 0" ></a-mixin>
+            <a-mixin id="fotos" material="opacity:0"scale="4 4 4" rotation="-90 0 0" ></a-mixin>
         </a-assets>
 
  
@@ -39,7 +39,7 @@
         </a-marker>
 
  
-        <a-marker type="pattern" url='markers/patt/kawesqar-1.patt' id='3' mixin="marker" infopng="img/text/kajef.png" animation__fade="" animation__rotation="">
+        <a-marker type="pattern" url='markers/patt/kawesqar-1.patt' id='3' mixin="marker" infopng="img/text/kajef.png">
             <a-plane material="src: img/kawesqar/familia-kawesqar-en-kalef.png" mixin="fotos"></a-plane>
         </a-marker>
 

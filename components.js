@@ -177,7 +177,8 @@ AFRAME.registerComponent('fade-in-popup', {
 
             let tl = AFRAME.ANIME.timeline({
                 easing: 'easeInSine',
-                duration: 3000
+                duration: 3000,
+                loop: 1
 
             });
             tl.add({
@@ -216,22 +217,22 @@ AFRAME.registerComponent('fade-in-popup', {
         marker.addEventListener('markerLost', function() {
 
           
-                marker.firstElementChild.setAttribute('animation__fade', {
-                    property: 'material.opacity',
-                    from: '1',
-                    to: '0',
-                    dur: 4000,
-                    loop: 3
-                });
+                // marker.firstElementChild.setAttribute('animation__fade', {
+                //     property: 'material.opacity',
+                //     from: '1',
+                //     to: '0',
+                //     dur: 4000,
+                //     loop: 3
+                // });
                 marker.firstElementChild.setAttribute('material.opacity', '0');
 
-                marker.firstElementChild.setAttribute('animation__rotation', {
-                    property: 'rotation',
-                    from: '-90 0 0',
-                    to: '-80 0 0',
-                    dur: 5000,
-                    loop: 5
-                });
+                // marker.firstElementChild.setAttribute('animation__rotation', {
+                //     property: 'rotation',
+                //     from: '-90 0 0',
+                //     to: '-80 0 0',
+                //     dur: 5000,
+                //     loop: 5
+                // });
                 marker.firstElementChild.setAttribute('rotation', '0 0 0');
             
 
