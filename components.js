@@ -174,7 +174,7 @@ AFRAME.registerComponent('fade-in-popup', {
         // let c = marker.children;
 
         marker.addEventListener('markerFound', function() {
-
+            marker.firstElementChild.setAttribute('rotation', '-90 0 0');
             let tl = AFRAME.ANIME.timeline({
                 easing: 'easeInSine',
                 duration: 3000
