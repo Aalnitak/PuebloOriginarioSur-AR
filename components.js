@@ -175,25 +175,41 @@ AFRAME.registerComponent('fade-in-popup', {
 
         marker.addEventListener('markerFound', function() {
 
-                marker.firstElementChild.setAttribute('animation__fade', {
-                    property: 'material.opacity',
-                    from: '0.1',
-                    to: '1',
-                    dur: 4000,
-                    easing: 'easeInOutCubic',
-                    loop: 1
-                });
-                marker.firstElementChild.setAttribute('material.opacity', '1');
+            let tl = AFRAME.ANIME.timeline({
+                easing: 'easeInSine',
+                duration: 3000
+
+            });
+            tl.add({
+                targets: marker.firstElementChild,
+                opacity: 1,
+                loop: 1,
+            });
+            tl.add({
+                targets: marker.firstElementChild,
+                rotation: '-50 0 0',
+                loop: 1,
+            });
+
+                // marker.firstElementChild.setAttribute('animation__fade', {
+                //     property: 'material.opacity',
+                //     from: '0.1',
+                //     to: '1',
+                //     dur: 4000,
+                //     easing: 'easeInOutCubic',
+                //     loop: 1
+                // });
+                // marker.firstElementChild.setAttribute('material.opacity', '1');
                 
-                marker.firstElementChild.setAttribute('animation__rotation', {
-                    property: 'rotation',
-                    from: '-90 0 0',
-                    to: '-50 0 0',
-                    dur: 4000,
-                    easing: 'easeInOutCubic',
-                    loop: 1
-                });
-                marker.firstElementChild.setAttribute('rotation', '-50 0 0');
+                // marker.firstElementChild.setAttribute('animation__rotation', {
+                //     property: 'rotation',
+                //     from: '-90 0 0',
+                //     to: '-50 0 0',
+                //     dur: 4000,
+                //     easing: 'easeInOutCubic',
+                //     loop: 1
+                // });
+                // marker.firstElementChild.setAttribute('rotation', '-50 0 0');
             
 
         });
