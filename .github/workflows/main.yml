@@ -1,5 +1,5 @@
 on: push
-name: push borders
+name: push prod
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
