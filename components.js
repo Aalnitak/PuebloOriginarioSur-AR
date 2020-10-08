@@ -187,7 +187,7 @@ AFRAME.registerComponent('fade-in-popup', {
             });
             tl.add({
                 targets: marker.firstElementChild,
-                rotation: '-50 0 0',
+                rotation: ['-90 0 0' , '-50 0 0'],
                 loop: 1,
             },'-=3000');
 
