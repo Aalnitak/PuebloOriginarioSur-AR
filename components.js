@@ -177,17 +177,18 @@ AFRAME.registerComponent('fade-in-popup', {
 
             let tl = AFRAME.ANIME.timeline({
                 easing: 'easeInSine',
-                duration: 3000,
-                loop: 1
+                duration: 3000
 
             });
             tl.add({
                 targets: marker.firstElementChild,
-                opacity: 1
+                opacity: 1,
+                loop: 1,
             });
             tl.add({
                 targets: marker.firstElementChild,
-                rotation: '-50 0 0'
+                rotation: '-50 0 0',
+                loop: 1,
             });
 
                 // marker.firstElementChild.setAttribute('animation__fade', {
