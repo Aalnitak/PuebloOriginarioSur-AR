@@ -183,13 +183,11 @@ AFRAME.registerComponent('fade-in-popup', {
             });
             tl.add({
                 targets: marker.firstElementChild,
-                opacity: 1,
-                loop: 1,
+                opacity: 1
             });
             tl.add({
                 targets: marker.firstElementChild,
-                rotation: '-50 0 0',
-                loop: 1,
+                rotation: '-50 0 0'
             });
 
                 // marker.firstElementChild.setAttribute('animation__fade', {
