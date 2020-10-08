@@ -5,7 +5,7 @@
 
 #hud {
     position: static;
-    width: 60vw;
+    width: 80vw;
     height: auto;
     padding-top: 5vh;
     z-index: 1;
