@@ -2,7 +2,7 @@ name: push borders
 on: 
   push:
     branches:
-      - feat/border
+      - feat/borders
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
