@@ -1,5 +1,8 @@
-on: push
 name: push borders
+on: 
+  push:
+    branches:
+      - feat/border
 jobs:
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
